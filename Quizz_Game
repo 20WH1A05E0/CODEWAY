@@ -1,0 +1,54 @@
+import random
+
+def load_questions():
+    questions = [
+        {"question": "What is the capital of France?", "options": ["A. Paris", "B. Berlin", "C. Rome", "D. Madrid"], "correct_answer": "A"},
+        {"question": "Which planet is known as the Red Planet?", "options": ["A. Earth", "B. Mars", "C. Venus", "D. Jupiter"], "correct_answer": "B"},
+        {"question": "What is the largest mammal in the world?", "options": ["A. Elephant", "B. Blue Whale", "C. Giraffe", "D. Gorilla"], "correct_answer": "B"},
+        {"question": "What is the capital of Japan?", "options": ["A. Tokyo", "B. Beijing", "C. Seoul", "D. Bangkok"], "correct_answer": "A"},
+    ]
+    return questions
+
+def display_question(question):
+    print(question["question"])
+    for option in question["options"]:
+        print(option)
+    user_answer = input("Enter your choice (A, B, C, or D): ").upper()
+    return user_answer
+
+def evaluate_answer(user_answer, correct_answer):
+    if user_answer == correct_answer:
+        print("Correct!")
+        return 1
+    else:
+        print(f"Incorrect. The correct answer is {correct_answer}.")
+        return 0
+
+def display_final_results(score):
+    print(f"Your final score is: {score}")
+
+def play_quiz():
+    print("Welcome to the Quiz Game!")
+    print("Here are the rules:")
+    print("1. Answer the multiple-choice questions.")
+    print("2. Each correct answer earns you one point.")
+    print("3. Have fun!")
+
+    questions = load_questions()
+    score = 0
+
+    for question in questions:
+        user_answer = display_question(question)
+        score += evaluate_answer(user_answer, question["correct_answer"])
+
+    display_final_results(score)
+
+if __name__ == "__main__":
+    play_quiz()
+    play_again = input("Do you want to play again? (yes/no): ").lower()
+
+    while play_again == "yes":
+        play_quiz()
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+
+    print("Thank you for playing the Quiz Game!")
